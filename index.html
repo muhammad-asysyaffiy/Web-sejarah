@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Magna — Portal Pembelajaran Sejarah Interaktif</title>
+    <!-- Tailwind CSS CDN untuk utilitas desain modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel (Klasik/Sejarah) & Plus Jakarta Sans (Modern/Clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        marble: '#FAF8F5',
+                        crimson: {
+                            50: '#FEF2F2',
+                            100: '#FEE2E2',
+                            700: '#9B1B1B',
+                            800: '#7F1D1D',
+                            900: '#5C1111',
+                        },
+                        gold: '#C5A059'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Memanggil file CSS Eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased selection:bg-crimson-800 selection:text-white">
+
+    <!-- ================= NAVBAR STICKY ================= -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200/90 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand / Tombol Kembali ke Pemilihan Tokoh -->
+            <a href="#pilih-tokoh" class="flex items-center gap-3 group shrink-0">
+                <span class="w-10 h-10 rounded-full bg-crimson-800 text-white font-serif font-bold flex items-center justify-center text-sm tracking-widest shadow-sm group-hover:bg-crimson-700 transition">HM</span>
+                <div>
+                    <span class="font-serif text-lg sm:text-xl font-bold tracking-widest text-stone-900 block leading-none">
+                        HISTORIA <span class="text-crimson-800">MAGNA</span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold block mt-0.5">
+                        Portal Sejarah Interaktif
+                    </span>
+                </div>
+            </a>
+
+            <!-- Navigasi Babak Dinamis (Tengah) -->
+            <nav class="hidden xl:flex items-center gap-6 text-xs font-semibold tracking-wider uppercase text-stone-600">
+                <a href="#pilih-tokoh" class="text-crimson-800 font-bold hover:text-crimson-700 transition-colors py-2 flex items-center gap-1">
+                    <span>Pilih Tokoh</span>
+                </a>
+                <span class="text-stone-300">|</span>
+                <a href="#page-1" id="nav-chap-1" class="hover:text-crimson-800 transition-colors py-2 border-b-2 border-transparent hover:border-crimson-800">I. Masa Muda</a>
+                <a href="#page-2" id="nav-chap-2" class="hover:text-crimson-800 transition-colors py-2 border-b-2 border-transparent hover:border-crimson-800">II. Penaklukan</a>
+                <a href="#page-3" id="nav-chap-3" class="hover:text-crimson-800 transition-colors py-2 border-b-2 border-transparent hover:border-crimson-800">III. Warisan</a>
+            </nav>
+
+            <!-- Quick Switcher Tokoh & Tombol Panduan Asset (Kanan) -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Pill Pemilih Cepat -->
+                <div class="bg-stone-100 p-1 rounded-full border border-stone-200 flex items-center text-xs font-serif font-bold">
+                    <button onclick="selectFigure('alexander', true)" id="pill-alexander" class="px-3 py-1.5 rounded-full transition-all bg-crimson-800 text-white shadow-sm">
+                        Alexander
+                    </button>
+                    <button onclick="selectFigure('caesar', true)" id="pill-caesar" class="px-3 py-1.5 rounded-full transition-all text-stone-600 hover:text-crimson-800">
+                        Caesar
+                    </button>
+                    <button onclick="selectFigure('napoleon', true)" id="pill-napoleon" class="px-3 py-1.5 rounded-full transition-all text-stone-600 hover:text-crimson-800">
+                        Napoleon
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= SECTION 0: HUB PEMILIHAN TOKOH SEJARAH ================= -->
+    <section id="pilih-tokoh" class="pt-28 pb-16 border-b border-stone-200/90 bg-gradient-to-b from-white via-marble to-marble relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <!-- Judul Galeri Pembelajaran -->
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <div class="inline-flex items-center gap-2 text-xs font-serif font-bold uppercase tracking-[0.25em] text-crimson-800 bg-red-50 px-4 py-1.5 rounded-full border border-red-200">
+                    <span>Modul Pembelajaran Multimedia Interaktif</span>
+                </div>
+                <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight">
+                    PILIH TOKOH SEJARAH DUNIA
+                </h1>
+                <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    Pilih salah satu panglima dan pemimpin besar di bawah ini untuk mempelajari perjalanan hidupnya dalam 3 babak penuh, lengkap dengan ilustrasi dan narasi suara interaktif.
+                </p>
+            </div>
+
+            <!-- 3 Kartu Pemilihan Tokoh -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- KARTU 1: ALEXANDER THE GREAT -->
+                <div id="card-alexander" onclick="selectFigure('alexander', true)" class="group cursor-pointer rounded-2xl bg-white p-6 border-2 border-crimson-800 shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between relative overflow-hidden">
+                    <div id="badge-active-alexander" class="absolute top-4 right-4 bg-crimson-800 text-white text-[10px] font-serif font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                        Sedang Dibuka
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <img 
+                                src="patung.jpg" 
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=400&q=80';"
+                                alt="Alexander Agung" 
+                                class="w-16 h-16 rounded-full object-cover border-2 border-crimson-800 shrink-0 bg-stone-200"
+                            >
+                            <div>
+                                <div class="text-xs font-serif font-bold text-crimson-800 uppercase tracking-wider">356 SM — 323 SM</div>
+                                <h2 class="font-serif text-xl font-bold text-stone-900 group-hover:text-crimson-800 transition">Alexander Agung</h2>
+                                <div class="text-xs text-stone-500">Raja Makedonia & Penakluk Persia</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-600 leading-relaxed mb-6">
+                            Murid langsung Aristoteles yang menyatukan Yunani dan menaklukkan Kekaisaran Persia hingga ke lembah Sungai Indus sebelum usia 30 tahun.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-serif font-bold uppercase tracking-wider text-crimson-800">
+                        <span>3 Babak Materi + 2 Audio</span>
+                        <span class="group-hover:translate-x-1 transition-transform">Pelajari Tokoh →</span>
+                    </div>
+                </div>
+
+                <!-- KARTU 2: JULIUS CAESAR -->
+                <div id="card-caesar" onclick="selectFigure('caesar', true)" class="group cursor-pointer rounded-2xl bg-white p-6 border-2 border-stone-200/90 hover:border-crimson-800/60 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between relative overflow-hidden">
+                    <div id="badge-active-caesar" class="hidden absolute top-4 right-4 bg-crimson-800 text-white text-[10px] font-serif font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                        Sedang Dibuka
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <img 
+                                src="patung-caesar.jpg" 
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=400&q=80';"
+                                alt="Julius Caesar" 
+                                class="w-16 h-16 rounded-full object-cover border-2 border-crimson-800 shrink-0 bg-stone-200"
+                            >
+                            <div>
+                                <div class="text-xs font-serif font-bold text-crimson-800 uppercase tracking-wider">100 SM — 44 SM</div>
+                                <h2 class="font-serif text-xl font-bold text-stone-900 group-hover:text-crimson-800 transition">Julius Caesar</h2>
+                                <div class="text-xs text-stone-500">Jenderal & Diktator Republik Roma</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-600 leading-relaxed mb-6">
+                            Sang penakluk Galia yang menyeberangi Sungai Rubicon, mengucapkan semboyan terkenal <em>"Veni, Vidi, Vici"</em>, dan mengubah wajah Republik Romawi.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-serif font-bold uppercase tracking-wider text-crimson-800">
+                        <span>3 Babak Materi + 2 Audio</span>
+                        <span class="group-hover:translate-x-1 transition-transform">Pelajari Tokoh →</span>
+                    </div>
+                </div>
+
+                <!-- KARTU 3: NAPOLEON BONAPARTE -->
+                <div id="card-napoleon" onclick="selectFigure('napoleon', true)" class="group cursor-pointer rounded-2xl bg-white p-6 border-2 border-stone-200/90 hover:border-crimson-800/60 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between relative overflow-hidden">
+                    <div id="badge-active-napoleon" class="hidden absolute top-4 right-4 bg-crimson-800 text-white text-[10px] font-serif font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow">
+                        Sedang Dibuka
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <img 
+                                src="patung-napoleon.jpg" 
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=400&q=80';"
+                                alt="Napoleon Bonaparte" 
+                                class="w-16 h-16 rounded-full object-cover border-2 border-crimson-800 shrink-0 bg-stone-200"
+                            >
+                            <div>
+                                <div class="text-xs font-serif font-bold text-crimson-800 uppercase tracking-wider">1769 M — 1821 M</div>
+                                <h2 class="font-serif text-xl font-bold text-stone-900 group-hover:text-crimson-800 transition">Napoleon Bonaparte</h2>
+                                <div class="text-xs text-stone-500">Kaisar Prancis & Maestro Strategi</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-stone-600 leading-relaxed mb-6">
+                            Perwira artileri asal Korsika yang bangkit dari Revolusi Prancis menjadi Kaisar Eropa, memenangkan Austerlitz, dan mewariskan hukum Kode Napoleon.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-serif font-bold uppercase tracking-wider text-crimson-800">
+                        <span>3 Babak Materi + 2 Audio</span>
+                        <span class="group-hover:translate-x-1 transition-transform">Pelajari Tokoh →</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WRAPPER KONTEN 3 HALAMAN DINAMIS ================= -->
+    <main id="story-container" class="fade-transition">
+
+        <!-- ================= PAGE 1: BABAK PERTAMA (MASA MUDA / AWAL KARIER) ================= -->
+        <section id="page-1" class="min-h-screen py-20 flex items-center border-b border-stone-200/80 relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-red-100/40 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Kolom Kiri: Teks Cerita Lebar (8 Kolom) -->
+                <div class="lg:col-span-8 space-y-6 bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-200/70">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div id="p1-tag" class="inline-flex items-center gap-2 text-xs font-serif font-bold uppercase tracking-[0.2em] text-crimson-800 bg-red-50 px-3.5 py-1.5 rounded-md border border-red-100">
+                            Babak Pertama • Pella & Mieza (356–336 SM)
+                        </div>
+                        <span id="p1-era" class="text-xs font-serif font-bold uppercase tracking-widest text-stone-400">
+                            ALEXANDER MAGNUS
+                        </span>
+                    </div>
+
+                    <div class="historical-divider">
+                        <h2 id="p1-title" class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight">
+                            I. MASA MUDA & ARISTOTELES
+                        </h2>
+                    </div>
+
+                    <div id="p1-paragraphs" class="space-y-4 text-stone-700 leading-relaxed text-base md:text-lg text-justify">
+                        <!-- Diisi secara dinamis oleh JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Gambar Patung/Potret Interaktif (4 Kolom, didorong ke kanan) -->
+                <div class="lg:col-span-4 flex flex-col items-center lg:items-end justify-center lg:pr-4">
+                    <div class="flex flex-col items-center text-center max-w-xs">
+                        
+                        <div class="relative group cursor-pointer" onclick="playIntroAudio()">
+                            <div class="absolute -inset-3 rounded-full border-2 border-dashed border-crimson-800/30 group-hover:rotate-45 transition-transform duration-700"></div>
+                            
+                            <img 
+                                id="img-intro"
+                                src="patung.jpg" 
+                                alt="Potret Tokoh Sejarah" 
+                                class="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full border-4 border-crimson-800 shadow-2xl group-hover:scale-105 transition-all duration-300 bg-stone-200"
+                            >
+
+                            <!-- Badge Ikon Suara -->
+                            <div class="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-crimson-800 text-white flex items-center justify-center shadow-lg group-hover:bg-crimson-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <button onclick="playIntroAudio()" id="btn-intro-label" class="mt-7 px-5 py-2.5 rounded-full bg-crimson-800 hover:bg-crimson-700 text-white font-serif text-xs font-bold tracking-widest uppercase shadow-md hover:shadow-lg transition flex items-center gap-2">
+                            Klik Gambar Untuk Suara
+                        </button>
+
+                        <p id="quote-intro-text" class="mt-3 text-xs italic text-stone-600 bg-white px-4 py-2.5 rounded-lg border border-stone-200 shadow-sm">
+                            "I'm Alexander III of Macedon. I conquered a portion of the world by the age of 30."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: BABAK KEDUA (PENAKLUKAN & PUNCAK KEJAYAAN) ================= -->
+        <section id="page-2" class="min-h-screen py-20 flex items-center bg-white border-b border-stone-200/80 relative">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full space-y-10">
+                
+                <div class="max-w-3xl space-y-4">
+                    <div id="p2-tag" class="inline-flex items-center gap-2 text-xs font-serif font-bold uppercase tracking-[0.2em] text-crimson-800 bg-red-50 px-3.5 py-1.5 rounded-md border border-red-100">
+                        Babak Kedua • Ekspedisi Asia (334–326 SM)
+                    </div>
+                    <div class="historical-divider">
+                        <h2 id="p2-title" class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight">
+                            II. PENAKLUKAN PERSIA
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                    
+                    <!-- Narasi Sejarah (7 Kolom) -->
+                    <div id="p2-paragraphs" class="lg:col-span-7 bg-marble p-8 md:p-10 rounded-2xl border border-stone-200/90 shadow-sm flex flex-col justify-between space-y-5 text-stone-700 leading-relaxed text-base md:text-lg text-justify">
+                        <!-- Diisi secara dinamis oleh JavaScript -->
+                    </div>
+
+                    <!-- Ringkasan Kronologi Pertempuran (5 Kolom) -->
+                    <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                        <div id="p2-cards" class="space-y-4">
+                            <!-- 3 Kartu Kronologi Dinamis -->
+                        </div>
+
+                        <div class="p-5 rounded-xl bg-crimson-800 text-white shadow-md flex items-center justify-between gap-4">
+                            <div>
+                                <div id="p2-banner-sub" class="text-xs uppercase tracking-widest text-red-200 font-serif">Rekor Pertempuran</div>
+                                <div id="p2-banner-title" class="text-lg sm:text-xl font-serif font-bold mt-0.5">Tak Terkalahkan Selama 15 Tahun</div>
+                            </div>
+                            <div id="p2-banner-stat" class="text-2xl sm:text-3xl font-serif font-extrabold text-red-200 shrink-0">100%</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: BABAK KETIGA (WARISAN & AKHIR HAYAT) ================= -->
+        <section id="page-3" class="min-h-screen py-20 flex items-center relative overflow-hidden">
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-red-100/40 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Kolom Kiri: Teks Cerita Lebar (8 Kolom) -->
+                <div class="lg:col-span-8 space-y-6 bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-stone-200/70">
+                    <div id="p3-tag" class="inline-flex items-center gap-2 text-xs font-serif font-bold uppercase tracking-[0.2em] text-crimson-800 bg-red-50 px-3.5 py-1.5 rounded-md border border-red-100">
+                        Babak Ketiga • Babilonia & Era Helenistik (323 SM)
+                    </div>
+
+                    <div class="historical-divider">
+                        <h2 id="p3-title" class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-stone-900 tracking-tight">
+                            III. WARISAN & AKHIR HAYAT
+                        </h2>
+                    </div>
+
+                    <div id="p3-paragraphs" class="space-y-4 text-stone-700 leading-relaxed text-base md:text-lg text-justify">
+                        <!-- Diisi secara dinamis oleh JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Gambar Simbol/Hewan Interaktif (4 Kolom, didorong ke kanan) -->
+                <div class="lg:col-span-4 flex flex-col items-center lg:items-end justify-center lg:pr-4">
+                    <div class="flex flex-col items-center text-center max-w-xs">
+                        
+                        <div class="relative group cursor-pointer" onclick="playQuoteAudio()">
+                            <div class="absolute -inset-3 rounded-full border-2 border-dashed border-crimson-800/30 group-hover:-rotate-45 transition-transform duration-700"></div>
+                            
+                            <img 
+                                id="img-quote"
+                                src="singa.jpg" 
+                                alt="Simbol Kepemimpinan Tokoh" 
+                                class="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full border-4 border-crimson-800 shadow-2xl group-hover:scale-105 transition-all duration-300 bg-stone-200"
+                            >
+
+                            <!-- Badge Ikon Suara -->
+                            <div class="absolute bottom-3 right-3 w-12 h-12 rounded-full bg-crimson-800 text-white flex items-center justify-center shadow-lg group-hover:bg-crimson-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <button onclick="playQuoteAudio()" id="btn-quote-label" class="mt-7 px-5 py-2.5 rounded-full bg-crimson-800 hover:bg-crimson-700 text-white font-serif text-xs font-bold tracking-widest uppercase shadow-md hover:shadow-lg transition flex items-center gap-2">
+                             Klik Gambar Untuk Kutipan
+                        </button>
+
+                        <p id="quote-wisdom-text" class="mt-3 text-xs italic text-stone-600 bg-white px-4 py-2.5 rounded-lg border border-stone-200 shadow-sm">
+                            "I'm not afraid of a lion army led by a sheep. I'm afraid of a sheep army led by a lion."
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER & NAVIGASI BAWAH ================= -->
+    <footer class="bg-white border-t border-stone-200 py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-xs text-stone-500 font-serif tracking-wider text-center sm:text-left">
+                TUGAS PROJECT SYSTEM — MULTIMEDIA PEMBELAJARAN SEJARAH INTERAKTIF • HISTORIA MAGNA
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#pilih-tokoh" class="px-4 py-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-serif font-bold uppercase tracking-wider transition">
+                    ↑ Kembali Pilih Tokoh
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL PANDUAN NAMA FILE MP3 & GAMBAR ================= -->
+    <div id="asset-modal" class="fixed inset-0 z-50 hidden bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-stone-200 p-6 sm:p-8 space-y-6">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-4">
+                <div>
+                    <span class="text-xs font-serif font-bold uppercase tracking-widest text-crimson-800">Panduan Penyimpanan Folder</span>
+                    <h3 class="font-serif text-2xl font-bold text-stone-900">Daftar Nama File Gambar & MP3</h3>
+                </div>
+                <button onclick="toggleAssetModal()" class="w-9 h-9 rounded-full bg-stone-100 hover:bg-red-50 hover:text-crimson-800 flex items-center justify-center font-bold text-stone-600 transition">
+                    ✕
+                </button>
+            </div>
+
+            <p class="text-sm text-stone-600 leading-relaxed">
+                Simpan semua file gambar (<code>.jpg</code>) dan suara (<code>.mp3</code>) Anda di dalam <strong>1 folder yang sama</strong> dengan file <code>index.html</code> ini. Jika ada file yang belum Anda masukkan, website tetap berjalan normal menggunakan gambar dan suara AI cadangan otomatis.
+            </p>
+
+            <div class="space-y-4 text-xs sm:text-sm">
+                <!-- Tabel Asset Alexander -->
+                <div class="p-4 rounded-xl bg-marble border border-stone-200 space-y-2">
+1.                     <div class="font-serif font-bold text-crimson-800 uppercase tracking-wider">Alexander Agung (Sudah Siap)
+</div>
+                    <ul class="space-y-1.5 text-stone-700">
+                        <li>🖼️ Gambar Babak 1: <code>patung.jpg</code> &nbsp;|&nbsp; 🖼️ Gambar Babak 3: <code>singa.jpg</code></li>
+                        <li>🔊 Audio Babak 1 (<code>alexander-intro.mp3</code>): <em>"I'm Alexander III of Macedon. I conquered a portion of the world by the age of 30."</em></li>
+                        <li>🔊 Audio Babak 3 (<code>alexander-quote.mp3</code>): <em>"I'm not afraid of a lion army led by a sheep. I'm afraid of a sheep army led by a lion."</em></li>
+                    </ul>
+                </div>
+
+                <!-- Tabel Asset Julius Caesar -->
+                <div class="p-4 rounded-xl bg-marble border border-stone-200 space-y-2">
+                    <div class="font-serif font-bold text-crimson-800 uppercase tracking-wider">2. Julius Caesar</div>
+                    <ul class="space-y-1.5 text-stone-700">
+                        <li>🖼️ Gambar Babak 1: <code>patung-caesar.jpg</code> (Patung Julius Caesar) &nbsp;|&nbsp; 🖼️ Gambar Babak 3: <code>elang-caesar.jpg</code> (Elang Romawi / Aquila)</li>
+                        <li>🔊 Audio Babak 1 (<code>caesar-intro.mp3</code>): <em>"I am Gaius Julius Caesar. I came, I saw, I conquered, and transformed the Roman Republic into a mighty Empire."</em></li>
+                        <li>🔊 Audio Babak 3 (<code>caesar-quote.mp3</code>): <em>"Cowards die many times before their actual deaths; the valiant never taste of death but once."</em></li>
+                    </ul>
+                </div>
+
+                <!-- Tabel Asset Napoleon Bonaparte -->
+                <div class="p-4 rounded-xl bg-marble border border-stone-200 space-y-2">
+                    <div class="font-serif font-bold text-crimson-800 uppercase tracking-wider">3. Napoleon Bonaparte</div>
+                    <ul class="space-y-1.5 text-stone-700">
+                        <li>🖼️ Gambar Babak 1: <code>patung-napoleon.jpg</code> (Potret/Patung Napoleon) &nbsp;|&nbsp; 🖼️ Gambar Babak 3: <code>kuda-napoleon.jpg</code> (Kuda Perang Putih / Elang Kekaisaran)</li>
+                        <li>🔊 Audio Babak 1 (<code>napoleon-intro.mp3</code>): <em>"I am Napoleon Bonaparte, Emperor of the French. Through artillery, strategy, and willpower, I reshaped the map of Europe."</em></li>
+                        <li>🔊 Audio Babak 3 (<code>napoleon-quote.mp3</code>): <em>"Impossible is a word to be found only in the dictionary of fools."</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-2">
+                <button onclick="toggleAssetModal()" class="px-6 py-2.5 rounded-full bg-crimson-800 hover:bg-crimson-700 text-white font-serif text-xs font-bold uppercase tracking-widest transition">
+                    Mengerti & Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ELEMEN AUDIO DINAMIS & LOGIKA JAVASCRIPT ================= -->
+    <audio id="audio-intro" preload="auto"></audio>
+    <audio id="audio-quote" preload="auto"></audio>
+
+    <!-- Memanggil file Script Eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>

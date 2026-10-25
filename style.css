@@ -1,0 +1,45 @@
+body {
+    background-color: #FAF8F5;
+    color: #1C1917;
+    background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+/* Animasi berdenyut saat audio sedang menyala */
+@keyframes pulse-crimson {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(127, 29, 29, 0.7);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 0 22px rgba(127, 29, 29, 0);
+    }
+}
+
+.playing-audio {
+    animation: pulse-crimson 1.5s infinite;
+    border-color: #9B1B1B !important;
+}
+
+/* Garis ornamen sejarah */
+.historical-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.historical-divider::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #7F1D1D 0%, rgba(127, 29, 29, 0.08) 100%);
+}
+
+/* Efek transisi halus saat ganti tokoh */
+.fade-transition {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.fade-out {
+    opacity: 0;
+    transform: translateY(8px);
+}
